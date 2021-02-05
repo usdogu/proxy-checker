@@ -113,8 +113,9 @@ func checker(queue chan string, complete chan bool) {
 			if err != nil {
 				continue
 			} else {
-				dosya, _ := os.OpenFile("live_proxies.txt", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0755)
+				dosya, _ := os.OpenFile("http_live_proxies.txt", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0755)
 				dosya.WriteString(line + "\n")
+				dosya.Close()
 			}
 			req.Body.Close()
 		} else if tip == "SOCKS5" {
@@ -122,8 +123,9 @@ func checker(queue chan string, complete chan bool) {
 			if err != nil {
 				continue
 			} else {
-				dosya, _ := os.OpenFile("live_proxies.txt", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0755)
+				dosya, _ := os.OpenFile("socks5_live_proxies.txt", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0755)
 				dosya.WriteString(line + "\n")
+				dosya.Close()
 			}
 
 		} else {
@@ -137,8 +139,9 @@ func checker(queue chan string, complete chan bool) {
 			if err != nil {
 				continue
 			} else {
-				dosya, _ := os.OpenFile("live_proxies.txt", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0755)
+				dosya, _ := os.OpenFile("socks4_live_proxies.txt", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0755)
 				dosya.WriteString(line + "\n")
+				dosya.Close()
 			}
 			req.Body.Close()
 		}
